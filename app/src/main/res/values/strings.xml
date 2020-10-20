@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Movie Catalog</string>
+    <string name="image_movie_list">Image Movie List</string>
+    <string name="title">Title</string>
+    <string name="day">Sunday, 18-03-2001</string>
+    <string name="detail_movie">Movie Detail</string>
+    <string name="date_release">Release Date :</string>
+    <string name="date">Sunday, 18 March 2001</string>
+    <string name="overview">Overview</string>
+    <string name="detail_overview">Dua tahun setelah peristiwa Perang Besar Shinobi Keempat, bulan Hagoromo Ōtsutsuki yang sudah lama dibuat untuk menyegel Jūbi mulai jatuh ke Bumi. Ancaman bulan yang akan menjadi meteor ini pun akan menghancurkan segala sesuatu yang akan berdampak buruk. Peristiwa ini disebabkan oleh Toneri Ōtsutsuki, keturunan terakhir dari saudara kembar Hagoromo Ōtsutsuki/Rikudou Sennin, yaitu Hamura Ōtsutsuki yang di mana salah satu dari keluarganya tersegel di bulan sejak pembentukannya. Di tengah suasana yang sepi di rumah klan Hyuga, Toneri mencoba untuk menculik adik Hinata Hyuuga, yaitu Hanabi. Naruto dan teman-temannya harus segera menyusun misi penyelamatan sebelum temuan mereka terlibat dalam pertempuran akhir untuk menentukan nasib dari segalanya.</string>
+    <string name="release_date">Release %s</string>
+    <string name="movie">MOVIE</string>
+    <string name="tv_show">TV SHOW</string>
+    <string name="empty_movie">EMPTY MOVIE</string>
+    <string name="dates">dates</string>
+</resources>
