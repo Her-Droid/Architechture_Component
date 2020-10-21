@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import id.herdroid.moviecatalog.R
 import id.herdroid.moviecatalog.data.DataEntity
+import id.herdroid.moviecatalog.enum.TypeData
 import id.herdroid.moviecatalog.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.list_movies.*
-import kotlinx.android.synthetic.main.list_movies.movie_description
-import kotlinx.android.synthetic.main.list_movies.view.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -23,17 +20,20 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
+                this,
+                ViewModelProvider.NewInstanceFactory()
         )[DetailViewModel::class.java]
 
-      intent.extras?.let{
-          val id = it.getLong(MOVIE_ID)
-          viewModel.id = id.toString()
-          viewModel.getData()?.let { data ->
-              populateItem(data)
-          }
-      }
+        val extras = intent.extras
+        if (extras != null) {
+            val courseId = extras.getString(MOVIE_ID)
+            if (courseId != null) {
+                viewModel.setSelectedData(courseId)
+                viewModel.getData()?.let { item ->
+                    populateItem(item)
+                }
+            }
+        }
     }
 
     private fun populateItem(data: DataEntity) {
@@ -47,12 +47,4 @@ class DetailActivity : AppCompatActivity() {
         const val MOVIE_ID = "id"
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            android.R.id.home -> {
-
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

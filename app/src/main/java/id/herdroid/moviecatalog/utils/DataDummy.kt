@@ -4,7 +4,7 @@ import id.herdroid.moviecatalog.data.DataEntity
 
 object DataDummy {
 
-    fun dummyMovies(): ArrayList<DataEntity> {
+    fun dummyMovies(): List<DataEntity> {
 
         val dataMovies = ArrayList<DataEntity>()
 
@@ -84,7 +84,7 @@ object DataDummy {
         return dataMovies
     }
 
-    fun dummyTvShows(): ArrayList<DataEntity> {
+    fun dummyTvShows(): List<DataEntity> {
 
         val dataTvShows = ArrayList<DataEntity>()
 

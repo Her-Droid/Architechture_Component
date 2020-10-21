@@ -21,13 +21,13 @@ class ListFragment : Fragment() {
     private var type: TypeData = TypeData.MOVIES
 
     companion object {
-        const val ARG_TYPE = "type"
+        const val MOVIE_TYPE = "type"
 
         @JvmStatic
         fun newInstance(type: TypeData) =
             ListFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_TYPE, type.ordinal)
+                    putInt(MOVIE_TYPE, type.ordinal)
                 }
             }
     }
@@ -36,7 +36,7 @@ class ListFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            type = TypeData.values()[it.getInt(ARG_TYPE)]
+            type = TypeData.values()[it.getInt(MOVIE_TYPE)]
         }
     }
 

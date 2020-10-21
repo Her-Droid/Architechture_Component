@@ -2,6 +2,7 @@ package id.herdroid.moviecatalog.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +13,14 @@ import id.herdroid.moviecatalog.data.DataEntity
 import id.herdroid.moviecatalog.enum.TypeData
 import id.herdroid.moviecatalog.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.list_movies.view.*
+import android.util.Log.i as i1
 
 class ListAdapter (private val context: Context, private var data: List<DataEntity>, private val type: TypeData):
         RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+
+    companion object{
+        private const val TAG = "DetailActivity"
+    }
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(data: DataEntity) {
             itemView.run {
@@ -27,9 +33,11 @@ class ListAdapter (private val context: Context, private var data: List<DataEnti
                 }
                 setOnClickListener {
                     context.startActivity(
+
                     Intent(context, DetailActivity::class.java)
                         .putExtra(DetailActivity.MOVIE_ID, data.movieId)
                     )
+                    Log.d("id", data.movieId)
                 }
             }
         }

@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context="ui.main.MainActivity">
 
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
