@@ -1,7 +1,7 @@
 package id.herdroid.moviecatalog.data
 
 
-data class DataEntity(
+data class MovieEntity(
     val movieId: String,
     var title: String,
     var description: String,

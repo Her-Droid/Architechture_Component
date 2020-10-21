@@ -1,29 +1,37 @@
 package id.herdroid.moviecatalog.viewmodel
 
 import androidx.lifecycle.ViewModel
-import id.herdroid.moviecatalog.data.DataEntity
+import id.herdroid.moviecatalog.data.MovieEntity
+import id.herdroid.moviecatalog.data.TvShowEntity
 import id.herdroid.moviecatalog.enum.TypeData
 import id.herdroid.moviecatalog.utils.DataDummy
-import id.herdroid.moviecatalog.utils.DataDummy.dummyMovies
-import id.herdroid.moviecatalog.utils.DataDummy.dummyTvShows
 
 class DetailViewModel :ViewModel() {
-    var type: TypeData = TypeData.MOVIES
+    var typeMovie: TypeData = TypeData.MOVIES
+    var typeTV: TypeData = TypeData.TV_SHOWS
     private lateinit var movId: String
 
     fun setSelectedData(courseId: String) {
         this.movId = courseId
     }
 
-    fun getData(): DataEntity? {
-        val dataEntities = if (type == TypeData.MOVIES) DataDummy.dummyMovies() else DataDummy.dummyTvShows()
+    fun getMovie(): MovieEntity? {
+        val dataEntities =  DataDummy.dummyMovies()
         for (element in dataEntities) {
-            val item = element
-            if (item.movieId == movId) {
-                return item
+            if (element.movieId == movId) {
+                return element
             }
         }
         return null
     }
 
+    fun getTv(): TvShowEntity? {
+        val dataEntities =  DataDummy.dummyTvShows()
+        for (element in dataEntities) {
+            if (element.tvShowId == movId) {
+                return element
+            }
+        }
+        return null
+    }
 }

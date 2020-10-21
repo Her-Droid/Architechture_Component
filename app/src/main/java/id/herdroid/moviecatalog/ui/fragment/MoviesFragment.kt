@@ -5,27 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import id.herdroid.moviecatalog.R
-import id.herdroid.moviecatalog.adapter.ListAdapter
+import id.herdroid.moviecatalog.adapter.MovieAdapter
+import id.herdroid.moviecatalog.data.MovieEntity
 import id.herdroid.moviecatalog.enum.TypeData
 import id.herdroid.moviecatalog.viewmodel.MovieViewModel
-import id.herdroid.moviecatalog.viewmodel.TvShowViewModel
-import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.fragment_tvshow.*
 
 
-class ListFragment : Fragment() {
+class MoviesFragment : Fragment() {
 
     private var type: TypeData = TypeData.MOVIES
+    lateinit var movieList : List<MovieEntity>
 
     companion object {
         const val MOVIE_TYPE = "type"
 
         @JvmStatic
         fun newInstance(type: TypeData) =
-            ListFragment().apply {
+            MoviesFragment().apply {
                 arguments = Bundle().apply {
                     putInt(MOVIE_TYPE, type.ordinal)
                 }
@@ -45,23 +47,17 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        return inflater.inflate(R.layout.fragment_movies, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProviders.of(this).get(
-                if (type == TypeData.MOVIES) MovieViewModel::class.java
-                else TvShowViewModel::class.java)
-            val listData = when (viewModel) {
-                is MovieViewModel -> viewModel.getMovies()
-                is TvShowViewModel -> viewModel.getTvShows()
-                else -> listOf()
-            }
+           val movie = ViewModelProviders.of(this).get(MovieViewModel::class.java)
+            movieList = movie.getMovies()
             val recyclerView = rv_movie
             context?.run {
-                recyclerView.adapter = ListAdapter(this, listData, type)
+                recyclerView.adapter = MovieAdapter(this, movieList, type)
                 recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
                 recyclerView.setHasFixedSize(true)
             }
